@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#181822"/>
+  <rect x="24" y="24" width="464" height="464" rx="96" stroke="#3b82f6" stroke-width="8" stroke-opacity="0.3"/>
+  <path d="M128 160C128 142.327 142.327 128 160 128H352C369.673 128 384 142.327 384 160V352C384 369.673 369.673 384 352 384H160C142.327 384 128 369.673 128 352V160Z" fill="#1e293b"/>
+  <rect x="160" y="160" width="192" height="24" rx="12" fill="#38bdf8"/>
+  <rect x="160" y="200" width="128" height="16" rx="8" fill="#818cf8"/>
+  <rect x="160" y="260" width="192" height="60" rx="12" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <text x="180" y="300" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#38bdf8">SUB</text>
+  <text x="235" y="300" font-family="system-ui, sans-serif" font-size="22" font-weight="normal" fill="#e2e8f0">STUDIO</text>
+  <path d="M370 120L385 85L420 70L385 55L370 20L355 55L320 70L355 85L370 120Z" fill="#a855f7"/>
+  <path d="M430 180L438 160L458 152L438 144L430 124L422 144L402 152L422 160L430 180Z" fill="#38bdf8"/>
+</svg>

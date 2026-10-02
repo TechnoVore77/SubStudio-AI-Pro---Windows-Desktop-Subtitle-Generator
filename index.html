@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubStudio AI Pro - Windows Desktop Subtitle Generator</title>
+    <meta name="description" content="Desktop app for Windows to scan videos, auto-generate accurate timestamped subtitles with Gemini AI, edit timing/speakers, translate, and export to SRT/VTT/TXT." />
+    <meta property="og:title" content="SubStudio AI Pro - Windows Desktop Subtitle Generator" />
+    <meta property="og:description" content="Desktop app for Windows to scan videos, auto-generate accurate timestamped subtitles with Gemini AI, edit timing/speakers, translate, and export to SRT/VTT/TXT." />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#141419" />
+    <script>
+      (function() {
+        // Intercept and suppress benign Vite websocket errors and fetch-getter overrides
+        window.addEventListener('error', function(event) {
+          var msg = (event && event.message) ? String(event.message) : '';
+          if (
+            msg.indexOf('fetch') !== -1 && msg.indexOf('getter') !== -1 ||
+            msg.indexOf('WebSocket') !== -1 ||
+            msg.indexOf('[vite]') !== -1
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reasonStr = '';
+          try {
+            reasonStr = (event && event.reason) ? (event.reason.message || String(event.reason)) : '';
+          } catch(e) {}
+          if (reasonStr.indexOf('WebSocket') !== -1 || reasonStr.indexOf('[vite]') !== -1) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        });
+
+        try {
+          var originalFetch = typeof window.fetch === 'function' ? window.fetch.bind(window) : undefined;
+          var customFetch = originalFetch;
+
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return customFetch || originalFetch;
+            },
+            set: function(newFetch) {
+              customFetch = newFetch;
+            }
+          });
+        } catch (err) {
+          try {
+            var protoFetch = Window.prototype.fetch;
+            Object.defineProperty(Window.prototype, 'fetch', {
+              configurable: true,
+              enumerable: true,
+              get: function() {
+                return protoFetch;
+              },
+              set: function(newFetch) {
+                protoFetch = newFetch;
+              }
+            });
+          } catch (err2) {}
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,39 @@
+{
+  "appId": "com.substudio.aipro",
+  "productName": "SubStudio AI Pro",
+  "copyright": "Copyright © 2026 SubStudio",
+  "directories": {
+    "output": "dist-electron"
+  },
+  "files": [
+    "dist/**/*",
+    "electron-main.cjs",
+    "public/**/*"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "appx",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/icon.svg"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "SubStudio AI Pro"
+  },
+  "appx": {
+    "identityName": "SubStudioAIPro",
+    "publisherDisplayName": "SubStudio Developer",
+    "publisher": "CN=SubStudio",
+    "backgroundColor": "#141419"
+  }
+}

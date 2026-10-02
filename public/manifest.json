@@ -1,0 +1,20 @@
+{
+  "short_name": "SubStudio",
+  "name": "SubStudio AI Pro - Windows Desktop Subtitle Generator",
+  "description": "Desktop app for Windows to scan videos, auto-generate accurate timestamped subtitles with Gemini AI, edit timing/speakers, translate, and export to SRT/VTT/TXT.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192 128x128",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#141419",
+  "theme_color": "#1e1e24",
+  "display": "standalone",
+  "orientation": "any",
+  "categories": ["video", "productivity", "utilities"],
+  "screenshots": []
+}
