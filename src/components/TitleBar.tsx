@@ -16,7 +16,8 @@ import {
   Keyboard,
   CheckCircle2,
   Cpu,
-  SpellCheck
+  SpellCheck,
+  Crown
 } from 'lucide-react';
 
 interface TitleBarProps {
@@ -26,11 +27,14 @@ interface TitleBarProps {
   onOpenConfig: () => void;
   onOpenShortcuts: () => void;
   onOpenPublishing?: () => void;
+  onOpenPricing?: () => void;
   onImportSubtitle?: (file: File) => void;
   onClearSubtitles?: () => void;
   isProcessing: boolean;
   videoLoaded: boolean;
   subtitleCount: number;
+  isProUser?: boolean;
+  scansRemaining?: number;
 }
 
 export const TitleBar: React.FC<TitleBarProps> = ({
@@ -40,11 +44,14 @@ export const TitleBar: React.FC<TitleBarProps> = ({
   onOpenConfig,
   onOpenShortcuts,
   onOpenPublishing,
+  onOpenPricing,
   onImportSubtitle,
   onClearSubtitles,
   isProcessing,
   videoLoaded,
   subtitleCount,
+  isProUser = false,
+  scansRemaining = 3,
 }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
@@ -285,26 +292,43 @@ export const TitleBar: React.FC<TitleBarProps> = ({
         </div>
       </div>
 
-      {/* Right: Windows Controls (Minimize, Maximize, Close simulation) */}
-      <div className="flex items-center space-x-1">
-        <button
-          className="w-7 h-6 flex items-center justify-center rounded hover:bg-slate-700/70 text-slate-400 hover:text-white transition-colors"
-          title="Minimize"
-        >
-          <Minus className="w-3 h-3" />
-        </button>
-        <button
-          className="w-7 h-6 flex items-center justify-center rounded hover:bg-slate-700/70 text-slate-400 hover:text-white transition-colors"
-          title="Maximize"
-        >
-          <Square className="w-2.5 h-2.5" />
-        </button>
-        <button
-          className="w-7 h-6 flex items-center justify-center rounded hover:bg-red-600 text-slate-400 hover:text-white transition-colors"
-          title="Close"
-        >
-          <X className="w-3.5 h-3.5" />
-        </button>
+      {/* Right: Upgrade button & Windows Controls */}
+      <div className="flex items-center space-x-2">
+        {onOpenPricing && (
+          <button
+            onClick={onOpenPricing}
+            className={`flex items-center space-x-1.5 px-3 py-0.5 rounded-full text-[11px] font-semibold transition-all shadow-sm ${
+              isProUser
+                ? 'bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/50'
+                : 'bg-gradient-to-r from-amber-500 via-indigo-600 to-purple-600 hover:from-amber-400 hover:to-indigo-500 text-white shadow-indigo-950/50 cursor-pointer animate-pulse'
+            }`}
+            title="View Pro Plans & Pricing"
+          >
+            <Crown className="w-3 h-3 text-amber-200" />
+            <span>{isProUser ? 'PRO UNLOCKED' : `Upgrade (${scansRemaining} left)`}</span>
+          </button>
+        )}
+
+        <div className="flex items-center space-x-1 border-l border-slate-700/60 pl-2">
+          <button
+            className="w-7 h-6 flex items-center justify-center rounded hover:bg-slate-700/70 text-slate-400 hover:text-white transition-colors"
+            title="Minimize"
+          >
+            <Minus className="w-3 h-3" />
+          </button>
+          <button
+            className="w-7 h-6 flex items-center justify-center rounded hover:bg-slate-700/70 text-slate-400 hover:text-white transition-colors"
+            title="Maximize"
+          >
+            <Square className="w-2.5 h-2.5" />
+          </button>
+          <button
+            className="w-7 h-6 flex items-center justify-center rounded hover:bg-red-600 text-slate-400 hover:text-white transition-colors"
+            title="Close"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
     </div>
     </>

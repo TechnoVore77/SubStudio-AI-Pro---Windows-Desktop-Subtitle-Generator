@@ -9,6 +9,7 @@ import { ScanConfigModal } from './components/ScanConfigModal';
 import { KeyboardShortcutsModal } from './components/KeyboardShortcutsModal';
 import { SamplePickerModal } from './components/SamplePickerModal';
 import { PublishingModal } from './components/PublishingModal';
+import { PricingModal } from './components/PricingModal';
 import { SAMPLE_VIDEOS, SampleVideo } from './data/sampleVideos';
 
 import {
@@ -95,6 +96,26 @@ export default function App() {
   const [aiToolsInitialTab, setAiToolsInitialTab] = useState<'spellcheck' | 'translate' | 'polish' | 'censor' | 'social' | 'summary'>('spellcheck');
   const [showShortcutsModal, setShowShortcutsModal] = useState<boolean>(false);
   const [showPublishingModal, setShowPublishingModal] = useState<boolean>(false);
+  const [showPricingModal, setShowPricingModal] = useState<boolean>(false);
+
+  // Pro & scan quota state
+  const [isProUser, setIsProUser] = useState<boolean>(() => {
+    return localStorage.getItem('substudio_pro') === 'true';
+  });
+  const [scansRemaining, setScansRemaining] = useState<number>(() => {
+    const stored = localStorage.getItem('substudio_scans_left');
+    return stored !== null ? parseInt(stored, 10) : 3;
+  });
+
+  const handleActivateProKey = (key: string): boolean => {
+    const cleaned = key.trim().toUpperCase();
+    if (cleaned.startsWith('PRO-') || cleaned.startsWith('ULTRA-') || cleaned.length >= 6) {
+      setIsProUser(true);
+      localStorage.setItem('substudio_pro', 'true');
+      return true;
+    }
+    return false;
+  };
 
   const handleOpenAiTools = (tab: 'spellcheck' | 'translate' | 'polish' | 'censor' | 'social' | 'summary' = 'spellcheck') => {
     setAiToolsInitialTab(tab);
@@ -236,6 +257,13 @@ export default function App() {
   // Run Gemini AI Video Scanning & Timestamp Subtitle Generation
   const handleRunAiScan = async () => {
     setScanError(null);
+
+    if (!isProUser && scansRemaining <= 0) {
+      setShowPricingModal(true);
+      setScanError("You have used all 3 free starter scans! Upgrade to Pro for unlimited AI video scanning.");
+      return;
+    }
+
     setIsProcessing(true);
 
     try {
@@ -292,6 +320,15 @@ export default function App() {
           videoSummary: json.data.videoSummary || '',
           keyHighlights: json.data.keyHighlights || [],
         });
+
+        // Decrement free quota if not a pro user
+        if (!isProUser) {
+          setScansRemaining(prev => {
+            const next = Math.max(0, prev - 1);
+            localStorage.setItem('substudio_scans_left', next.toString());
+            return next;
+          });
+        }
       }
     } catch (err: any) {
       console.error('AI Scan Error:', err);
@@ -403,11 +440,14 @@ export default function App() {
         onOpenAiTools={handleOpenAiTools}
         onOpenConfig={() => setShowConfigModal(true)}
         onOpenShortcuts={() => setShowShortcutsModal(true)}
+        onOpenPricing={() => setShowPricingModal(true)}
         onImportSubtitle={handleImportSubtitle}
         onClearSubtitles={handleClearSubtitles}
         isProcessing={isProcessing}
         videoLoaded={!!videoSrc}
         subtitleCount={subtitles.length}
+        isProUser={isProUser}
+        scansRemaining={scansRemaining}
       />
 
       {/* Main Desktop Workstation Canvas Layout */}
@@ -594,6 +634,15 @@ export default function App() {
       {showPublishingModal && (
         <PublishingModal
           onClose={() => setShowPublishingModal(false)}
+        />
+      )}
+
+      {showPricingModal && (
+        <PricingModal
+          onClose={() => setShowPricingModal(false)}
+          scansRemaining={scansRemaining}
+          isProUser={isProUser}
+          onActivateProKey={handleActivateProKey}
         />
       )}
     </div>

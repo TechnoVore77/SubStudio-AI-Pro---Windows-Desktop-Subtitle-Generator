@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f15"/>
+      <stop offset="50%" stop-color="#14141d"/>
+      <stop offset="100%" stop-color="#181826"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Subtle Grid lines -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Glow orb -->
+  <circle cx="200" cy="180" r="180" fill="#38bdf8" opacity="0.12" filter="blur(60px)"/>
+  <circle cx="1000" cy="450" r="220" fill="#818cf8" opacity="0.1" filter="blur(80px)"/>
+
+  <!-- Left: App Branding & Hero Text -->
+  <g transform="translate(100, 110)">
+    <!-- Badge -->
+    <rect width="250" height="36" rx="18" fill="#1e293b" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="20" cy="18" r="6" fill="#38bdf8"/>
+    <text x="36" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="1">GEMINI AI POWERED</text>
+
+    <!-- Title -->
+    <text x="0" y="95" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="54" font-weight="900" fill="#ffffff" letter-spacing="-1">
+      SubStudio <tspan fill="url(#accent)">AI Pro</tspan>
+    </text>
+
+    <!-- Tagline -->
+    <text x="0" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="600" fill="#94a3b8">
+      Free AI Video Subtitle &amp; Caption Generator
+    </text>
+
+    <!-- Bullets -->
+    <g transform="translate(0, 195)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#cbd5e1">
+      <!-- Bullet 1 -->
+      <circle cx="10" cy="10" r="6" fill="#10b981"/>
+      <text x="26" y="15">Auto-generate timestamped subtitles from MP4, WebM, MOV</text>
+
+      <!-- Bullet 2 -->
+      <circle cx="10" cy="42" r="6" fill="#38bdf8"/>
+      <text x="26" y="47">Export industry-standard SRT, VTT, and clean TXT in seconds</text>
+
+      <!-- Bullet 3 -->
+      <circle cx="10" cy="74" r="6" fill="#c084fc"/>
+      <text x="26" y="79">Multi-speaker diarization &amp; 20+ language auto-translation</text>
+    </g>
+
+    <!-- Web badge & URL -->
+    <g transform="translate(0, 320)">
+      <rect width="360" height="46" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="18" y="29" font-family="monospace" font-size="16" font-weight="600" fill="#38bdf8">🌐 substudioaipro.linkpc.net</text>
+    </g>
+  </g>
+
+  <!-- Right: Subtitle Preview Mockup Card -->
+  <g transform="translate(730, 110)">
+    <!-- Main UI Card -->
+    <rect width="370" height="410" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+    
+    <!-- Window Bar -->
+    <rect width="370" height="38" rx="16" fill="#0b1120"/>
+    <rect y="22" width="370" height="16" fill="#0b1120"/>
+    <circle cx="20" cy="19" r="5" fill="#ef4444"/>
+    <circle cx="36" cy="19" r="5" fill="#f59e0b"/>
+    <circle cx="52" cy="19" r="5" fill="#10b981"/>
+    <text x="80" y="23" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b">SubStudio Editor • video_clip.mp4</text>
+
+    <!-- Subtitle Item 1 -->
+    <g transform="translate(18, 55)">
+      <rect width="334" height="68" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+      <text x="12" y="22" font-family="monospace" font-size="11" fill="#38bdf8">00:00:01.200 → 00:00:04.500</text>
+      <text x="12" y="44" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#ffffff">Welcome back! Today we are looking at</text>
+      <text x="12" y="60" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#ffffff">how AI speeds up your video workflow.</text>
+    </g>
+
+    <!-- Subtitle Item 2 -->
+    <g transform="translate(18, 133)">
+      <rect width="334" height="68" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="12" y="22" font-family="monospace" font-size="11" fill="#a78bfa">00:00:04.700 → 00:00:08.100</text>
+      <text x="12" y="44" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#e2e8f0">Subtitles boost engagement by over 80%</text>
+      <text x="12" y="60" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#e2e8f0">across YouTube, TikTok, and Instagram.</text>
+    </g>
+
+    <!-- Subtitle Item 3 -->
+    <g transform="translate(18, 211)">
+      <rect width="334" height="68" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="12" y="22" font-family="monospace" font-size="11" fill="#34d399">00:00:08.300 → 00:00:11.900</text>
+      <text x="12" y="44" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#e2e8f0">Export directly to SRT format or burn-in</text>
+      <text x="12" y="60" font-family="-apple-system, sans-serif" font-size="13" font-weight="500" fill="#e2e8f0">custom styled captions in seconds.</text>
+    </g>
+
+    <!-- Bottom Action Bar inside card -->
+    <g transform="translate(18, 292)">
+      <rect width="160" height="34" rx="6" fill="#3b82f6"/>
+      <text x="35" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Export .SRT</text>
+      
+      <rect x="174" width="160" height="34" rx="6" fill="#334155"/>
+      <text x="210" y="22" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#cbd5e1">Export .VTT</text>
+    </g>
+  </g>
+</svg>
